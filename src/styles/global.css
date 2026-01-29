@@ -2,7 +2,7 @@
   color-scheme: dark;
 
   /* layout */
-  --max: 76ch;
+  --max: 100ch;
   --pad: 1.5rem;
 
   /* CCS / Eclipse palette */
@@ -12,7 +12,7 @@
   --muted: #9da5b4;
 
   --blue: #569cd6;
-  --yellow: #dcdcaa;
+  --yellow: #ffd700;
   --orange: #ce9178;
 
   --border: #3c3c3c;
@@ -74,23 +74,25 @@ a:hover {
 
 /* Headings */
 h1, h2, h3 {
-  color: var(--fg);
   font-weight: 600;
   margin-top: 2rem;
 }
 
 h1 {
   font-size: 1.6rem;
+  color: var(--blue);
 }
 
 h2 {
   font-size: 1.3rem;
-  border-bottom: 1px solid var(--border);
+  color: var(--yellow);
+  border-bottom: 1px solid var(--yellow);
   padding-bottom: 0.25rem;
 }
 
 h3 {
   font-size: 1.1rem;
+  color: var(--blue);
 }
 
 /* Code blocks - IDE editor pane */
@@ -104,7 +106,7 @@ pre {
 }
 
 code {
-  color: var(--yellow);
+  color: #4ec9b0;
   font-size: 0.95em;
 }
 
@@ -125,10 +127,14 @@ li {
   margin: 0.25rem 0;
 }
 
+li::marker {
+  color: var(--blue);
+}
+
 /* Horizontal rule */
 hr {
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--blue);
   margin: 2rem 0;
 }
 
@@ -139,7 +145,7 @@ hr {
 
 /* Strong/emphasis */
 strong {
-  color: var(--fg);
+  color: #e0e0e0 !important;
   font-weight: 600;
 }
 
