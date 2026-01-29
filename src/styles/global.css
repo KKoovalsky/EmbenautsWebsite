@@ -1,0 +1,153 @@
+:root {
+  color-scheme: dark;
+
+  /* layout */
+  --max: 76ch;
+  --pad: 1.5rem;
+
+  /* CCS / Eclipse palette */
+  --bg: #1e1e1e;
+  --panel: #252526;
+  --fg: #d4d4d4;
+  --muted: #9da5b4;
+
+  --blue: #569cd6;
+  --yellow: #dcdcaa;
+  --orange: #ce9178;
+
+  --border: #3c3c3c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    monospace;
+  line-height: 1.6;
+}
+
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+/* Header - IDE toolbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+header nav {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: var(--fg);
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.25rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+/* Code blocks - IDE editor pane */
+pre {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+code {
+  color: var(--yellow);
+  font-size: 0.95em;
+}
+
+pre code {
+  color: var(--fg);
+}
+
+/* Lists & text */
+p {
+  margin: 0.75rem 0;
+}
+
+ul, ol {
+  margin: 0.75rem 0 0.75rem 1.25rem;
+}
+
+li {
+  margin: 0.25rem 0;
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* Selection */
+::selection {
+  background: #264f78;
+}
+
+/* Strong/emphasis */
+strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+em {
+  color: var(--muted);
+}
+
+/* Small text */
+small {
+  color: var(--muted);
+}

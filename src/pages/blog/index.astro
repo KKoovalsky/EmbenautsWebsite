@@ -1,33 +1,25 @@
 ---
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('posts'))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = await getCollection('posts', ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Blog | Embenauts</title>
-  </head>
-  <body>
-    <h1>Blog</h1>
+<BaseLayout title="Blog | Embenauts">
+  <h1>Blog</h1>
 
+  {posts.length === 0 ? (
+    <p>No posts yet.</p>
+  ) : (
     <ul>
       {posts.map(post => (
         <li>
-          <a href={`/blog/${post.slug}/`}>
-            {post.data.title}
-          </a>
+          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
           <br />
           <small>{post.data.date.toDateString()}</small>
         </li>
       ))}
     </ul>
-
-    <p>
-      <a href="/">Home</a>
-    </p>
-  </body>
-</html>
+  )}
+</BaseLayout>
