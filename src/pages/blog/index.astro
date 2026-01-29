@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blog | Embenauts</title>
+  </head>
+  <body>
+    <h1>Blog</h1>
+
+    <ul>
+      {posts.map(post => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>
+            {post.data.title}
+          </a>
+          <br />
+          <small>{post.data.date.toDateString()}</small>
+        </li>
+      ))}
+    </ul>
+
+    <p>
+      <a href="/">Home</a>
+    </p>
+  </body>
+</html>
