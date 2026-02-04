@@ -1,7 +1,7 @@
 ---
-title: CMake Toolchain Files in Embedded Projects
-description: Two coherent approaches to structuring toolchain files and platform configuration in embedded CMake builds.
-date: 2026-01-28
+title: "CMake Toolchain Files in Embedded Projects"
+description: "Understanding toolchain files, platform configuration, and explicit failure modes for embedded cross-compilation with CMake."
+date: 2025-01-15
 ---
 
 # CMake Toolchain Files in Embedded Projects
