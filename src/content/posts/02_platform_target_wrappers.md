@@ -1,12 +1,6 @@
----
-title: "Platform Target Wrappers in CMake (Embedded)"
-description: "Creating minimal add_executable and add_library wrappers for embedded targets, with safety mechanisms and useful extras."
-date: 2025-01-20
----
+# CMake for Embedded: Why add_executable() Needs a Platform Contract
 
-# Platform Target Wrappers in CMake (Embedded)
-
-## Why You Need `add_executable` and `add_library` Wrappers for Embedded Targets
+## How wrappers and validation turn conventions into compile-time guarantees
 
 > This post is a direct continuation of **Post #1**.
 > Post #1 established two coherent structures:
@@ -875,3 +869,9 @@ Print flash/RAM usage after every build:
 ```
 
 > **Example:** All these extras are implemented in [`Case3Example/`](Case3Example/).
+
+---
+
+**License**
+© 2026 Kacper Kowalski
+This article is licensed under **CC BY-NC-ND 4.0**.

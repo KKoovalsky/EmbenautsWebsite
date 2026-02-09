@@ -1,5 +1,16 @@
 # Astro Starter Kit: Minimal
 
+## License
+
+### Code
+All source code in this repository is licensed under the **MIT License**, unless stated otherwise.
+
+### Content
+Blog posts and written content included in this repository are licensed under  
+**Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**.
+
+The content is copied from a separate content repository and retains its original license.
+
 ```sh
 npm create astro@latest -- --template minimal
 ```
