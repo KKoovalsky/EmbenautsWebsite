@@ -1,0 +1,339 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --navy:    #0F172A;
+        --blue:    #3D7AB5;
+        --copper:  #B45309;
+        --muted:   #64748B;
+        --border:  #D1D5DB;
+        --graphite:#111827;
+        --soft-bg: #F8FAFC;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        background: #CBD5E1;
+        color: var(--graphite);
+      }
+
+      .page-wrap {
+        padding: 28px 0 56px;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 8mm 10mm 10mm;
+        background: #fff;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .18);
+      }
+
+      /* Print button */
+      .print-action {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 100;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        background: var(--blue);
+        color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+      }
+
+      .btn:hover { background: #2f6496; }
+
+      /* ── Resume content ── */
+
+      .rc-header-flex {
+        display: flex;
+        align-items: stretch;
+        gap: 14px;
+        margin-bottom: 4px;
+      }
+
+      .rc-header-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .rc-photo-wrap {
+        width: 53mm;
+        height: 53mm;
+        overflow: hidden;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+
+      .rc-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        transform: scale(1.25);
+      }
+
+      .rc h1 {
+        font-family: 'Lora', Georgia, serif;
+        font-size: 36pt;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+        color: var(--blue);
+      }
+
+      /* Title line */
+      .rc h1 + p {
+        font-size: 13pt;
+        font-weight: 500;
+        color: var(--navy);
+        margin-top: 5px;
+      }
+
+      /* Employment type line */
+      .rc h1 + p + p {
+        font-size: 11pt;
+        color: var(--muted);
+        margin-top: 1px;
+      }
+
+      /* Tagline bullets */
+      .rc h1 + p + p + p {
+        font-size: 9pt;
+        color: var(--muted);
+        margin-top: 7px;
+        line-height: 1.8;
+      }
+
+      .rc hr {
+        border: none;
+        border-top: 1px solid var(--blue);
+        margin: 6px 0;
+      }
+
+      /* Section headers */
+      .rc h2 {
+        font-size: 10.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--blue);
+        margin-top: 13px;
+        margin-bottom: 5px;
+        padding-bottom: 3px;
+        border-bottom: 2.5px solid var(--blue);
+        page-break-after: avoid;
+      }
+
+      /* Project / role headers — copper left-border micro-accent */
+      .rc h3 {
+        font-size: 9.5pt;
+        font-weight: 600;
+        color: #4080B8;
+        margin-top: 8px;
+        margin-bottom: 1px;
+        padding-left: 8px;
+        border-left: 4px solid var(--copper);
+        page-break-after: avoid;
+      }
+
+      /* Date / meta line right after h3 */
+      .rc h3 + p {
+        font-size: 8pt;
+        color: var(--muted);
+        font-style: italic;
+        margin-bottom: 4px;
+      }
+
+
+/* Employer role intro lines */
+      .rc .role-intro {
+        font-size: 10.5pt;
+      }
+
+      /* General paragraphs */
+      .rc p {
+        font-size: 9pt;
+        line-height: 1.55;
+        margin-bottom: 4px;
+      }
+
+      /* Bullet lists */
+      .rc ul {
+        margin: 3px 0 4px 15px;
+        page-break-inside: avoid;
+      }
+
+      .rc li {
+        font-size: 8.5pt;
+        line-height: 1.55;
+        margin-bottom: 2px;
+      }
+
+      /* Tech list — bare paragraph immediately after a bullet list */
+      .rc ul + p {
+        font-size: 7.5pt;
+        color: var(--muted);
+        font-style: italic;
+        margin-top: 2px;
+        margin-bottom: 0;
+        line-height: 1.65;
+      }
+
+      /* Tables (brief project rows) */
+      .rc table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 8pt;
+        margin: 6px 0;
+        page-break-inside: avoid;
+      }
+
+      .rc th {
+        text-align: left;
+        font-size: 6.5pt;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        padding: 3px 6px 3px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .rc td {
+        padding: 3px 6px;
+        vertical-align: top;
+        border-bottom: 1px solid #f1f5f9;
+        color: var(--graphite);
+        line-height: 1.45;
+      }
+
+      .rc tr:last-child td { border-bottom: none; }
+
+      .rc td:first-child {
+        font-weight: 500;
+        color: var(--navy);
+      }
+
+      .rc strong {
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      /* ── Print ── */
+      @media print {
+        body { background: white; }
+
+        .page-wrap { padding: 0; }
+
+        .page {
+          width: 100%;
+          min-height: auto;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+
+        .print-action { display: none; }
+
+        .rc {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+
+      @page {
+        size: A4;
+        margin: 8mm 10mm;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrap">
+      <div class="page">
+        <div class="rc">
+          <slot />
+        </div>
+      </div>
+    </div>
+    <div class="print-action">
+      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const rc = document.querySelector('.rc');
+        if (!rc) return;
+
+        const headerFlex = document.createElement('div');
+        headerFlex.className = 'rc-header-flex';
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'rc-header-text';
+
+        const photoWrap = document.createElement('div');
+        photoWrap.className = 'rc-photo-wrap';
+        const img = document.createElement('img');
+        img.className = 'rc-photo';
+        img.src = '/images/kacper-kowalski.jpg';
+        img.alt = 'Kacper Kowalski';
+        photoWrap.appendChild(img);
+
+        // Collect all nodes before the first <hr> into the text column
+        let node = rc.firstChild;
+        while (node) {
+          const next = node.nextSibling;
+          if (node.nodeName === 'HR') break;
+          textDiv.appendChild(node);
+          node = next;
+        }
+
+        headerFlex.appendChild(textDiv);
+        headerFlex.appendChild(photoWrap);
+        rc.insertBefore(headerFlex, rc.firstChild);
+
+        // Wrap each h3 block to prevent page breaks mid-entry
+        rc.querySelectorAll('h3').forEach(h3 => {
+          const wrap = document.createElement('div');
+          wrap.style.breakInside = 'avoid';
+          wrap.style.pageBreakInside = 'avoid';
+          h3.parentNode.insertBefore(wrap, h3);
+          let el = h3;
+          while (el) {
+            const next = el.nextSibling;
+            const stop = !next || ['H2', 'H3', 'HR'].includes(next.nodeName);
+            wrap.appendChild(el);
+            if (stop) break;
+            el = next;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
