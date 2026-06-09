@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const members = await getCollection('team');
+---
+
+<BaseLayout title="Team | Embenauts">
+  <h1>Team</h1>
+  <ul class="team-list">
+    {members.map(member => (
+      <li class="team-card">
+        {member.data.photo && (
+          <img src={member.data.photo} alt={member.data.name} class="team-photo" />
+        )}
+        <div>
+          <a href={`/team/${member.slug}/`}><strong>{member.data.name}</strong></a>
+          <p>{member.data.role}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .team-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .team-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .team-photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+  }
+
+  .team-card p {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const members = await getCollection('team');
+  return members.map(member => ({
+    params: { slug: member.slug },
+    props: { member },
+  }));
+}
+
+const { member } = Astro.props;
+const { Content } = await member.render();
+---
+
+<BaseLayout title={`${member.data.name} | Embenauts`}>
+  <Content />
+</BaseLayout>

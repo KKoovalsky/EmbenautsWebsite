@@ -10,6 +10,16 @@ const posts = defineCollection({
   }),
 });
 
+const team = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    photo: z.string().optional(),
+  }),
+});
+
 export const collections = {
   posts,
+  team,
 };

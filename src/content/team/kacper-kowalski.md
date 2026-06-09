@@ -1,8 +1,7 @@
 ---
-title: Resume - Kacper Kowalski
-description: Senior Embedded Software Engineer / Embedded & IoT Consultant
-date: 2026-05-21
-draft: true
+name: Kacper Kowalski
+role: Senior Embedded Software Engineer / Embedded & IoT Consultant
+photo: /images/kacper-kowalski.jpg
 ---
 
 # Kacper Kowalski
