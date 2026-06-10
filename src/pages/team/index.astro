@@ -11,7 +11,14 @@ const members = await getCollection('team');
     {members.map(member => (
       <li class="team-card">
         {member.data.photo && (
-          <img src={member.data.photo} alt={member.data.name} class="team-photo" />
+          <div class="team-photo-wrap">
+            <img
+              src={member.data.photo}
+              alt={member.data.name}
+              class="team-photo"
+              style={`--zoom: ${member.data.photoZoom ?? 1}; --offset-y: ${member.data.photoOffsetY ?? 0}%`}
+            />
+          </div>
         )}
         <div>
           <a href={`/team/${member.slug}/`}><strong>{member.data.name}</strong></a>
@@ -38,13 +45,21 @@ const members = await getCollection('team');
     gap: 1.25rem;
   }
 
-  .team-photo {
+  .team-photo-wrap {
     width: 72px;
     height: 72px;
     border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .team-photo {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center top;
-    flex-shrink: 0;
+    transform: translateY(var(--offset-y, 0%)) scale(var(--zoom, 1));
+    transform-origin: center center;
   }
 
   .team-card p {

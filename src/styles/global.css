@@ -2,7 +2,7 @@
   color-scheme: dark;
 
   /* layout */
-  --max: 100ch;
+  --max: 130ch;
   --pad: 1.5rem;
 
   /* CCS / Eclipse palette */
@@ -35,7 +35,7 @@ html, body {
     Consolas,
     "Liberation Mono",
     monospace;
-  line-height: 1.6;
+  line-height: 1.35;
 }
 
 main {

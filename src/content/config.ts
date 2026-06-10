@@ -16,6 +16,8 @@ const team = defineCollection({
     name: z.string(),
     role: z.string(),
     photo: z.string().optional(),
+    photoZoom: z.number().optional().default(1),
+    photoOffsetY: z.number().optional().default(0),
   }),
 });
 

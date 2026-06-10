@@ -2,6 +2,8 @@
 name: Kacper Kowalski
 role: Senior Embedded Software Engineer / Embedded & IoT Consultant
 photo: /images/kacper-kowalski.jpg
+photoZoom: 1.4
+photoOffsetY: -8
 ---
 
 # Kacper Kowalski
