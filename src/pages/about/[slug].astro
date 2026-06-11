@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const members = await getCollection('team');
+  const members = await getCollection('about');
   return members.map(member => ({
     params: { slug: member.slug },
     props: { member },

@@ -15,12 +15,30 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout title={`${post.data.title} | Embenauts`}>
-  <article>
-    <p><a href="/blog">&larr; Back to Blog</a></p>
-    <h1>{post.data.title}</h1>
-    <p><small>{post.data.date.toDateString()}</small></p>
-    <p><em>{post.data.description}</em></p>
-    <hr />
-    <Content />
-  </article>
+  <div class="post-wrap">
+    <img src="/images/logo.png" alt="Embenauts" class="post-logo" />
+    <article>
+      <p><a href="/blog">&larr; Back to Blog</a></p>
+      <h1>{post.data.title}</h1>
+      <p><small>{post.data.date.toDateString()}</small></p>
+      <p><em>{post.data.description}</em></p>
+      <hr />
+      <Content />
+    </article>
+  </div>
 </BaseLayout>
+
+<style>
+.post-wrap {
+  position: relative;
+}
+
+.post-logo {
+  position: absolute;
+  top: -2.25rem;
+  right: 0;
+  height: 180px;
+  width: 180px;
+  object-fit: contain;
+}
+</style>

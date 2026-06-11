@@ -10,7 +10,7 @@ const posts = defineCollection({
   }),
 });
 
-const team = defineCollection({
+const about = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
@@ -23,5 +23,5 @@ const team = defineCollection({
 
 export const collections = {
   posts,
-  team,
+  about,
 };

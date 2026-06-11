@@ -1,8 +1,313 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts', ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featured = posts.slice(0, 3);
 ---
 
-<BaseLayout title="Embenauts">
-  <h1>Embenauts</h1>
-  <p>Notes on embedded systems, CMake, and firmware tooling.</p>
+<BaseLayout title="Embenauts — Embedded Software Studio">
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-label">// Embenauts</p>
+      <h1 class="hero-title">Better embedded software systems.</h1>
+      <p class="hero-sub">
+        Embedded software studio and technical publication, founded by
+        <a href="/about/kacper-kowalski">Kacper Kowalski</a>.
+        I help embedded teams ship better firmware — CMake build systems,
+        firmware architecture, developer tooling, and CI/CD pipelines.
+      </p>
+      <div class="hero-ctas">
+        <a class="cta-primary" href="mailto:kacper@embenauts.dev">Discuss a project</a>
+        <a class="cta-secondary" href="/blog">Read the articles</a>
+      </div>
+    </div>
+    <div class="hero-logo-wrap">
+      <img src="/images/logo.png" alt="Embenauts" class="hero-logo" />
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="expertise">
+    <h2>Expertise</h2>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <strong>CMake &amp; embedded build systems</strong>
+        <p>Target-based designs, toolchain files, cross-compilation, and build system migrations for MCU and embedded Linux projects.</p>
+      </div>
+      <div class="expertise-item">
+        <strong>Firmware architecture &amp; maintainability</strong>
+        <p>Modular firmware design, RTOS-based architectures, driver layers, and code that survives hardware changes.</p>
+      </div>
+      <div class="expertise-item">
+        <strong>Developer tooling &amp; CI/CD</strong>
+        <p>Automated hardware-in-the-loop testing, static analysis pipelines, and CI infrastructure for embedded teams.</p>
+      </div>
+      <div class="expertise-item">
+        <strong>Safety-critical systems</strong>
+        <p>Firmware for safety-critical applications: safety communication protocols, deterministic state machines, and functional safety process integration.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  {featured.length > 0 && (
+    <section class="articles">
+      <h2>Selected articles</h2>
+      <ul class="article-list">
+        {featured.map(post => (
+          <li class="article-item">
+            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+            <p>{post.data.description}</p>
+            <small>{post.data.date.toDateString()}</small>
+          </li>
+        ))}
+      </ul>
+      <p class="all-link"><a href="/blog">All articles →</a></p>
+    </section>
+  )}
+
+  <hr />
+
+  <section class="founder">
+    <h2>About the founder</h2>
+    <div class="founder-inner">
+      <div class="founder-photo-wrap">
+        <img
+          src="/images/kacper-kowalski.jpg"
+          alt="Kacper Kowalski"
+          class="founder-photo"
+        />
+      </div>
+      <div class="founder-bio">
+        <p>
+          I'm <strong>Kacper Kowalski</strong>, a senior embedded software engineer and the founder of Embenauts.
+          I work directly with clients on complex embedded systems — firmware architecture, CMake build systems,
+          developer tooling, and safety-critical development.
+        </p>
+        <p>
+          Over ten years I've shipped firmware across smart home systems, smart metering, industrial robotics,
+          consumer electronics, professional video systems, and safety-critical applications.
+        </p>
+        <a href="/about/kacper-kowalski">Full profile →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="contact" id="contact">
+    <h2>Work together</h2>
+    <p>
+      Working through a difficult CMake migration, firmware architecture problem, or embedded development workflow?
+      Tell me what you're building and where the project is getting stuck.
+    </p>
+    <a class="cta-primary" href="mailto:kacper@embenauts.dev">Send me an email</a>
+  </section>
+
 </BaseLayout>
+
+<style>
+/* Hero */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 3rem 0 2rem;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-logo-wrap {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-start;
+  margin-top: -4.75rem;
+  padding-top: 0.25rem;
+}
+
+.hero-logo {
+  height: 180px;
+  width: 180px;
+  object-fit: contain;
+}
+
+.hero-label {
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.hero-title {
+  font-size: 2rem;
+  color: var(--blue);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.hero-sub {
+  max-width: 70ch;
+  color: var(--fg);
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  text-align: justify;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* CTAs */
+.cta-primary,
+.cta-secondary {
+  display: inline-block;
+  padding: 0.55rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.cta-primary {
+  background: var(--blue);
+  color: var(--bg);
+  border: 1px solid var(--blue);
+}
+
+.cta-primary:hover {
+  background: #4a8ec2;
+  border-color: #4a8ec2;
+  text-decoration: none;
+}
+
+.cta-secondary {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+}
+
+.cta-secondary:hover {
+  background: rgba(86, 156, 214, 0.1);
+  text-decoration: none;
+}
+
+/* Expertise */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28ch, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.expertise-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.1rem 1.25rem;
+}
+
+.expertise-item strong {
+  display: block;
+  color: var(--yellow) !important;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.expertise-item p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* Articles */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.article-item {
+  border-left: 2px solid var(--blue);
+  padding-left: 1rem;
+}
+
+.article-item a {
+  font-size: 1rem;
+}
+
+.article-item p {
+  margin: 0.3rem 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.article-item small {
+  font-size: 0.8rem;
+}
+
+.all-link {
+  margin-top: 1.5rem;
+}
+
+/* Founder */
+.founder-inner {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.founder-photo-wrap {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+}
+
+.founder-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: translateY(-8%) scale(1.4);
+  transform-origin: center center;
+}
+
+.founder-bio {
+  flex: 1;
+}
+
+.founder-bio p {
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+/* Contact */
+.contact {
+  padding-bottom: 3rem;
+}
+
+.contact p {
+  max-width: 65ch;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+</style>

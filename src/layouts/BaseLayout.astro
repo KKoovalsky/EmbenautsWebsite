@@ -18,15 +18,15 @@ const { title } = Astro.props;
   <body>
     <header>
       <div>
-        <strong style="color:var(--blue);">Embenauts</strong>
-        <span style="color:var(--muted); margin-left:0.75rem;">
-          Embedded · CMake · Toolchains
-        </span>
+        <a href="/" class="brand">
+          <img src="/images/logo.png" alt="Embenauts logo" class="brand-logo" />
+          <span class="brand-name">Embenauts</span>
+        </a>
       </div>
       <nav>
-        <a href="/">Home</a>
-        <a href="/blog">Blog</a>
-        <a href="/team">Team</a>
+        <a href="/blog">Articles</a>
+        <a href="/about">About</a>
+        <a href="mailto:kacper@embenauts.dev">Contact</a>
       </nav>
     </header>
 
@@ -35,3 +35,28 @@ const { title } = Astro.props;
     </main>
   </body>
 </html>
+
+<style>
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-logo {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+}
+
+.brand-name {
+  color: var(--blue);
+  font-weight: 600;
+}
+</style>
