@@ -794,10 +794,6 @@ Start with Case 1 if it fits your project. Move to Case 2 or 3 when you actually
 
 The wrappers above are intentionally minimal — just enough to produce a runnable binary. In practice, you'll want more.
 
-### Common main()
-
-TBD
-
 ### Finding toolchain utilities
 
 CMake doesn't automatically find `objcopy` and `size` for cross toolchains. Add these to your toolchain file:
