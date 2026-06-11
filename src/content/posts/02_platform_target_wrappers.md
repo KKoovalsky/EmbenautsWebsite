@@ -1,7 +1,7 @@
 ---
 title: "Platform Target Wrappers in CMake (Embedded)"
 description: "Creating minimal add_executable and add_library wrappers for embedded targets, with safety mechanisms and useful extras."
-date: 2025-01-20
+date: 2026-01-20
 ---
 
 # CMake for Embedded: Why add_executable() Needs a Platform Contract
@@ -256,7 +256,7 @@ With platform flags in the toolchain file, every library already compiles with t
 
 So in Case 1: **wrap executables, leave libraries alone**.
 
-> **Example:** See [`Case1Example/`](Case1Example/) for a complete working example.
+> **Example:** See [`Case1Example/`](https://github.com/KKoovalsky/EmbenautsEmbeddedCMakeBlog/tree/main/02_PlatformTargetWrappers/Case1Example) for a complete working example.
 
 ---
 
@@ -380,7 +380,7 @@ Both the library and executable now have the platform contract, and the validato
 
 > **Need multiple linker scripts per platform?** See Case 3, which shows how to separate executable creation from linker script linking, with compile-time safety to prevent mismatches.
 
-> **Example:** See [`Case2Example/`](Case2Example/) for a complete working example.
+> **Example:** See [`Case2Example/`](https://github.com/KKoovalsky/EmbenautsEmbeddedCMakeBlog/tree/main/02_PlatformTargetWrappers/Case2Example) for a complete working example.
 
 ---
 
@@ -766,7 +766,7 @@ This pattern provides three layers of safety:
 2. **Platform/linker compatibility** — `COMPATIBLE_INTERFACE_STRING` catches mismatches at generation time
 3. **Linker script presence** — validation catches forgotten `target_link_libraries()` calls
 
-> **Example:** See [`Case3Example/`](Case3Example/) for a complete working example.
+> **Example:** See [`Case3Example/`](https://github.com/KKoovalsky/EmbenautsEmbeddedCMakeBlog/tree/main/02_PlatformTargetWrappers/Case3Example) for a complete working example.
 
 ---
 
@@ -793,6 +793,10 @@ Start with Case 1 if it fits your project. Move to Case 2 or 3 when you actually
 ## Addendum: Extending the Minimal Wrapper
 
 The wrappers above are intentionally minimal — just enough to produce a runnable binary. In practice, you'll want more.
+
+### Common main()
+
+TBD
 
 ### Finding toolchain utilities
 
@@ -874,7 +878,7 @@ Print flash/RAM usage after every build:
     )
 ```
 
-> **Example:** All these extras are implemented in [`Case3Example/`](Case3Example/).
+> **Example:** All these extras are implemented in [`Case3Example/`](https://github.com/KKoovalsky/EmbenautsEmbeddedCMakeBlog/tree/main/02_PlatformTargetWrappers/Case3Example).
 
 ---
 
