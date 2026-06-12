@@ -12,7 +12,7 @@
   --muted: #9da5b4;
 
   --blue: #569cd6;
-  --yellow: #ffd700;
+  --yellow: #e8b84a;
   --orange: #ce9178;
 
   --border: #3c3c3c;
@@ -179,4 +179,89 @@ th {
 
 tr:nth-child(even) td {
   background: #222222;
+}
+
+/* ── Resume page (/about/[slug]) ── */
+
+.resume-page h1 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 400;
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.resume-photo-wrap {
+  float: right;
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0.25rem 0 1.5rem 2rem;
+  border: 1px solid var(--border);
+}
+
+.resume-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: translateY(var(--offset-y, 0%)) scale(var(--zoom, 1));
+  transform-origin: center center;
+}
+
+.resume-page h3 {
+  border-left: 3px solid var(--orange);
+  padding-left: 0.65rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+
+.resume-page h3 + p {
+  color: var(--orange);
+  margin-top: 0.15rem;
+  margin-bottom: 0.4rem;
+}
+
+.resume-page h3 + p strong {
+  color: var(--orange) !important;
+}
+
+.resume-page p {
+  margin: 0.35rem 0;
+}
+
+.resume-page ul,
+.resume-page ol {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.resume-page li {
+  margin: 0.1rem 0;
+}
+
+.resume-page h2 {
+  margin-top: 1.5rem;
+}
+
+.resume-page hr {
+  margin: 1rem 0;
+}
+
+.tech-label {
+  color: var(--muted);
+  font-size: 0.8em;
+  margin-right: 0.25rem;
+}
+
+.tech-chip {
+  display: inline-block;
+  background: var(--panel);
+  color: var(--blue);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.78em;
+  margin: 0.2rem 0.2rem 0 0;
+  white-space: nowrap;
 }

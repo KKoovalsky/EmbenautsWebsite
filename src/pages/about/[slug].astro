@@ -15,5 +15,54 @@ const { Content } = await member.render();
 ---
 
 <BaseLayout title={`${member.data.name} | Embenauts`}>
-  <Content />
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet" />
+  </Fragment>
+
+  <div class="resume-page">
+    {member.data.photo && (
+      <div
+        class="resume-photo-wrap"
+        style={`--zoom: ${member.data.photoZoom ?? 1}; --offset-y: ${member.data.photoOffsetY ?? 0}%`}
+      >
+        <img
+          class="resume-photo"
+          src={member.data.photo}
+          alt={member.data.name}
+        />
+      </div>
+    )}
+    <Content />
+  </div>
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLParagraphElement>('.resume-page p').forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong || strong !== p.firstElementChild) return;
+    if (strong.textContent?.trim() !== 'Technologies:') return;
+
+    const techText = Array.from(p.childNodes)
+      .filter(n => n !== strong)
+      .map(n => n.textContent ?? '')
+      .join('')
+      .trim();
+
+    const chips = techText.split(',').map(t => t.trim()).filter(Boolean);
+    p.innerHTML = '';
+
+    const label = document.createElement('span');
+    label.className = 'tech-label';
+    label.textContent = 'Tech: ';
+    p.appendChild(label);
+
+    chips.forEach(chip => {
+      const span = document.createElement('span');
+      span.className = 'tech-chip';
+      span.textContent = chip;
+      p.appendChild(span);
+    });
+  });
+</script>

@@ -8,7 +8,7 @@ photoOffsetY: -8
 
 # Kacper Kowalski
 
-**Senior Embedded Software Engineer / Lead Contributor **
+**Senior Embedded Software Engineer / Lead Contributor**
 **Freelance / B2B / Self‑employed**
 
 C/C++ • Modern C++ • Embedded Systems • Firmware • MCU & Embedded Linux • IoT • Safety-Critical (SIL) • Build Systems • CMake • Toolchains • CI/CD • RTOS • Audio • Testing • Python • OSS  
