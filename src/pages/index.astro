@@ -25,7 +25,27 @@ const featured = posts.slice(0, 3);
       </div>
     </div>
     <div class="hero-logo-wrap">
-      <img src="/images/logo.png" alt="Embenauts" class="hero-logo" />
+      <img src="/images/logo_with_text.png" alt="Embenauts" class="hero-logo" />
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="services">
+    <h2>Services</h2>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <strong>Build systems</strong>
+        <p>CMake design, migration, and optimization for embedded projects — target-based architectures, toolchain integration, and CI/CD setup.</p>
+      </div>
+      <div class="expertise-item">
+        <strong>Full firmware development</strong>
+        <p>End-to-end firmware development from architecture to production — drivers, RTOS design, communication protocols, and hardware bring-up.</p>
+      </div>
+      <div class="expertise-item">
+        <strong>Consulting, code review &amp; evaluation</strong>
+        <p>Architecture consulting, codebase evaluation, and code review for existing embedded projects — identify issues, improve maintainability, guide technical direction.</p>
+      </div>
     </div>
   </section>
 
@@ -85,7 +105,7 @@ const featured = posts.slice(0, 3);
       </div>
       <div class="founder-bio">
         <p>
-          I'm <strong>Kacper Kowalski</strong>, a senior embedded software engineer and the founder of Embenauts.
+          I'm <strong>Kacper</strong>, a senior embedded software engineer and the founder of Embenauts.
           I work directly with clients on complex embedded systems — firmware architecture, CMake build systems,
           developer tooling, and safety-critical development.
         </p>
@@ -128,14 +148,16 @@ const featured = posts.slice(0, 3);
   flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
+  padding-right: 1.3rem;
   align-self: flex-start;
+  width: 280px;
   margin-top: -4.75rem;
-  padding-top: 0.25rem;
+  padding-top: 1rem;
 }
 
 .hero-logo {
-  height: 180px;
-  width: 180px;
+  height: 210px;
+  width: auto;
   object-fit: contain;
 }
 
