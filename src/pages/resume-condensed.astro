@@ -1,11 +1,11 @@
 ---
 import { getEntry, render } from 'astro:content';
-import ResumeLayout from '../layouts/ResumeLayout.astro';
+import CondensedResumeLayout from '../layouts/CondensedResumeLayout.astro';
 
 const entry = await getEntry('posts', 'resume-condensed');
 if (!entry) throw new Error('resume-condensed.md not found');
 const { Content } = await render(entry);
 ---
-<ResumeLayout title="Kacper Kowalski – Resume">
+<CondensedResumeLayout title="Kacper Kowalski – Resume">
   <Content />
-</ResumeLayout>
+</CondensedResumeLayout>
