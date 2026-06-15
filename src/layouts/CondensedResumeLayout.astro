@@ -113,7 +113,7 @@ const { title } = Astro.props;
       .rc h1 + p {
         font-size: 13pt;
         font-weight: 500;
-        color: var(--navy);
+        color: #4a4a4a;
         margin-top: 5px;
       }
 
@@ -124,17 +124,59 @@ const { title } = Astro.props;
         margin-top: 1px;
       }
 
-      /* Tagline bullets */
+      /* Contact line (3rd paragraph) */
       .rc h1 + p + p + p {
         font-size: 9pt;
         color: var(--muted);
-        margin-top: 7px;
+        margin-top: 6px;
+        line-height: 1.8;
+      }
+
+      .rc-contact {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--blue);
+        border-top: 0.5pt solid #a0aab4;
+        border-bottom: 0.5pt solid #a0aab4;
+        padding: 4px 0;
+      }
+
+      .rc-contact a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      .rc-contact a:hover { text-decoration: underline; }
+
+      .rc-icon {
+        width: 11px;
+        height: 11px;
+        flex-shrink: 0;
+        vertical-align: middle;
+        color: #4a4a4a;
+      }
+
+      .rc-icon-at {
+        font-weight: 600;
+        line-height: 1;
+        color: #4a4a4a;
+      }
+
+      .rc-contact-sep { color: var(--muted); }
+
+      /* Tagline keywords (4th paragraph) */
+      .rc h1 + p + p + p + p {
+        font-size: 9pt;
+        color: var(--muted);
+        margin-top: 6px;
         line-height: 1.8;
       }
 
       .rc hr {
         border: none;
-        border-top: 1px solid var(--blue);
+        height: 0.4pt;
+        background-color: var(--blue);
         margin: 6px 0;
       }
 
@@ -224,13 +266,13 @@ const { title } = Astro.props;
         letter-spacing: 0.08em;
         color: var(--muted);
         padding: 3px 6px 3px;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 0.5pt solid var(--border);
       }
 
       .rc td {
         padding: 3px 6px;
         vertical-align: top;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 0.5pt solid #f1f5f9;
         color: var(--graphite);
         line-height: 1.45;
       }
@@ -239,12 +281,12 @@ const { title } = Astro.props;
 
       .rc td:first-child {
         font-weight: 500;
-        color: var(--navy);
+        color: #4a4a4a;
       }
 
       .rc strong {
         font-weight: 600;
-        color: var(--navy);
+        color: #4a4a4a;
       }
 
       /* ── Print ── */
@@ -262,6 +304,11 @@ const { title } = Astro.props;
         }
 
         .print-action { display: none; }
+
+        .rc-contact {
+          border-top: 0.25pt solid #d8dde2;
+          border-bottom: 0.25pt solid #d8dde2;
+        }
 
         .rc {
           -webkit-print-color-adjust: exact;
