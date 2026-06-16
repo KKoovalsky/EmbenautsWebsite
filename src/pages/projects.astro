@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const groups = [
+  {
+    label: 'Freelance & client work',
+    projects: [
+      { emoji: '🛡️', name: 'SIL2 Safe Human Detection System', desc: 'Multi-platform safety-critical human detection combining mmWave radar, thermal imaging, and detection algorithms.' },
+      { emoji: '⚡', name: 'Build & Toolchain Optimization', desc: 'Reduced compile times on a large-scale C++/CMake build system for Autokroma.' },
+      { emoji: '📦', name: 'Sensorsuite — Container Monitoring Device', desc: 'IoT firmware with LoRaWAN, satellite, and Wi-Fi connectivity for industrial container monitoring.' },
+      { emoji: '🎥', name: 'Embedded Video Encoding Pipeline', desc: 'RTSP streaming and H.265/HEVC hardware encoding pipeline for professional cinema cameras.' },
+      { emoji: '🤖', name: 'Industrial Cleaning Robot', desc: 'Power-optimized motor control and modernized C++20 firmware for a cleaning robot.' },
+      { emoji: '🎫', name: 'Barcode / QR Event Registration Device', desc: 'LTE-M connected firmware with NFC, barcode scanning, and secure OTA updates.' },
+      { emoji: '👁️', name: 'OpenCV on Microcontroller', desc: 'Ported OpenCV algorithms onto a resource-constrained STM32U575 MCU.' },
+      { emoji: '🏷️', name: 'Epaper Label Shop System', desc: 'Gateway-to-fleet BLE epaper label system bridged to the cloud via MQTT.' },
+    ],
+  },
+  {
+    label: 'Open-source & independent R&D',
+    projects: [
+      { emoji: '🎛️', name: 'Seqnaut & Sycosm', desc: 'Embedded audio DSP and synthesis platform for building synths, effects, and drum machines.' },
+      { emoji: '🧩', name: 'Portable Bitfields', desc: 'Modern C++ bitfield abstraction library focused on correctness and compile-time guarantees.' },
+      { emoji: '🎸', name: 'Jeff', desc: 'Jungles Guitar Effect — a real-time DSP guitar pedal with an automated CMake test rig.' },
+      { emoji: '🌦️', name: 'Aura Weather Station', desc: 'NB-IoT precision-agriculture weather monitoring system, built with friends.' },
+      { emoji: '🔧', name: 'LLVM / clangd', desc: 'Open-source contributions to clangd Code Actions for C and C++.' },
+      { emoji: '⚙️', name: 'Tsepepe & TsepepeVim', desc: 'LLVM-based C++ refactoring tool, with a Vim plugin frontend.' },
+      { emoji: '🏗️', name: 'LlvmCrossCompileArmCortexM', desc: 'Pre-built LLVM libraries cross-compiled for ARM Cortex-M baremetal targets.' },
+      { emoji: '🧵', name: 'JunglesOsHelpers', desc: 'RTOS helper abstractions for FreeRTOS and native targets, CMake-integrated.' },
+      { emoji: '🎹', name: 'Zynthian', desc: 'Set up and explored a Raspberry Pi-based open synthesizer platform.' },
+    ],
+  },
+  {
+    label: 'Prior employment',
+    projects: [
+      { emoji: '🚰', name: 'Mitte Home Water Dispenser', desc: 'Maintained firmware on Qualcomm QCA4020 with AWS IoT for a smart water dispenser.' },
+      { emoji: '💍', name: 'Livy Protect Smart Ring', desc: 'Burglary, fire, and air-quality detection firmware on ESP32 with FreeRTOS and MQTT.' },
+      { emoji: '🛣️', name: 'Electronic Toll Collection On-Board Units', desc: 'DSRC/GNSS toll collection firmware for Kapsch Trafficom, built in a Scrum team.' },
+      { emoji: '🌡️', name: 'Smart Meters & ZigBee Thermostat', desc: 'Bare-metal firmware and build systems for NB-IoT smart meters and a ZigBee thermostat.' },
+      { emoji: '☎️', name: 'Intercom System', desc: 'STM32F4 intercom firmware with VoIP/PoE, plus fleet management for gateways and routers.' },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Projects — Kacper Kowalski">
+
+  <section class="projects">
+    <p class="projects-label">// Freelance, client, and personal work</p>
+    <h1 class="projects-title">Projects</h1>
+    {groups.map(group => (
+      <div class="project-group">
+        <h2 class="project-group-title">{group.label}</h2>
+        <ul class="project-list">
+          {group.projects.map(p => (
+            <li class="project-item">
+              <span class="project-emoji" aria-hidden="true">{p.emoji}</span>
+              <span><strong>{p.name}</strong> — {p.desc}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+    <p class="all-link"><a href="/about/kacper-kowalski">Full profile →</a></p>
+  </section>
+
+</BaseLayout>
+
+<style>
+.projects {
+  padding: 2rem 0 3rem;
+}
+
+.projects-label {
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.projects-title {
+  font-size: 2rem;
+  color: var(--blue);
+  margin: 0 0 1.5rem;
+}
+
+.project-group {
+  margin-bottom: 2rem;
+}
+
+.project-group-title {
+  color: var(--yellow);
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.project-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  line-height: 1;
+}
+
+.project-emoji {
+  flex-shrink: 0;
+  width: 1.5rem;
+}
+
+.all-link {
+  margin-top: 2rem;
+}
+</style>
