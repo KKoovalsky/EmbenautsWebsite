@@ -21,7 +21,7 @@ const featured = posts.slice(0, 3);
       </p>
       <div class="hero-ctas">
         <a class="cta-primary" href="mailto:kacper@embenauts.dev">Discuss a project</a>
-        <a class="cta-secondary" href="/blog">Read the articles</a>
+        <a class="cta-secondary" href="/articles">Read the articles</a>
       </div>
     </div>
     <div class="hero-logo-wrap">
@@ -78,16 +78,20 @@ const featured = posts.slice(0, 3);
   {featured.length > 0 && (
     <section class="articles">
       <h2>Selected articles</h2>
+      <p class="articles-note">
+        Embenauts is new. We're building out a publication on what makes embedded software good —
+        starting with build systems, since that's where a lot of firmware projects quietly fall apart.
+      </p>
       <ul class="article-list">
         {featured.map(post => (
           <li class="article-item">
-            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+            <a href={`/articles/${post.slug}/`}>{post.data.title}</a>
             <p>{post.data.description}</p>
             <small>{post.data.date.toDateString()}</small>
           </li>
         ))}
       </ul>
-      <p class="all-link"><a href="/blog">All articles →</a></p>
+      <p class="all-link"><a href="/articles">All articles →</a></p>
     </section>
   )}
 
@@ -113,6 +117,9 @@ const featured = posts.slice(0, 3);
           Over ten years I've shipped firmware across smart home systems, smart metering, industrial robotics,
           consumer electronics, professional video systems, and safety-critical applications.
         </p>
+        <p>
+          Embenauts is led directly by me. For larger projects, I bring in additional embedded developers as needed.
+        </p>
         <a href="/about/kacper-kowalski">Full profile →</a>
       </div>
     </div>
@@ -123,8 +130,9 @@ const featured = posts.slice(0, 3);
   <section class="contact" id="contact">
     <h2>Work together</h2>
     <p>
-      Working through a difficult CMake migration, firmware architecture problem, or embedded development workflow?
-      Tell me what you're building and where the project is getting stuck.
+      Have a difficult CMake migration, firmware architecture problem, or embedded development workflow — or
+      simply need full firmware development from the ground up? Send me a short description of what you're
+      building and where it's getting stuck.
     </p>
     <a class="cta-primary" href="mailto:kacper@embenauts.dev">Send me an email</a>
   </section>
@@ -283,6 +291,14 @@ const featured = posts.slice(0, 3);
 
 .all-link {
   margin-top: 1.5rem;
+}
+
+.articles-note {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  max-width: 65ch;
+  margin: 0.75rem 0 0;
 }
 
 /* Founder */
