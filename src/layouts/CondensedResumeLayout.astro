@@ -133,14 +133,26 @@ const { title } = Astro.props;
       }
 
       .rc-contact {
+        position: relative;
         display: flex;
         align-items: center;
         gap: 5px;
         color: var(--blue);
-        border-top: 0.5pt solid #a0aab4;
-        border-bottom: 0.5pt solid #a0aab4;
         padding: 4px 0;
       }
+
+      .rc-contact::before,
+      .rc-contact::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #a0aab4;
+      }
+
+      .rc-contact::before { top: 0; }
+      .rc-contact::after { bottom: 0; }
 
       .rc-contact a {
         color: var(--blue);
@@ -175,7 +187,7 @@ const { title } = Astro.props;
 
       .rc hr {
         border: none;
-        height: 0.4pt;
+        height: 1px;
         background-color: var(--blue);
         margin: 6px 0;
       }
@@ -259,6 +271,7 @@ const { title } = Astro.props;
       }
 
       .rc th {
+        position: relative;
         text-align: left;
         font-size: 6.5pt;
         font-weight: 600;
@@ -266,18 +279,37 @@ const { title } = Astro.props;
         letter-spacing: 0.08em;
         color: var(--muted);
         padding: 3px 6px 3px;
-        border-bottom: 0.5pt solid var(--border);
+      }
+
+      .rc th::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: var(--border);
       }
 
       .rc td {
+        position: relative;
         padding: 3px 6px;
         vertical-align: top;
-        border-bottom: 0.5pt solid #f1f5f9;
         color: var(--graphite);
         line-height: 1.45;
       }
 
-      .rc tr:last-child td { border-bottom: none; }
+      .rc td::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: #f1f5f9;
+      }
+
+      .rc tr:last-child td::after { display: none; }
 
       .rc td:first-child {
         font-weight: 500;
@@ -305,9 +337,21 @@ const { title } = Astro.props;
 
         .print-action { display: none; }
 
-        .rc-contact {
-          border-top: 0.25pt solid #d8dde2;
-          border-bottom: 0.25pt solid #d8dde2;
+        /*
+         * Chrome's print/PDF rasterizer floors any sub-1px border or fill to
+         * 1 CSS px at the page's 96dpi layout reference, then scales that floored
+         * pixel up to the print resolution (e.g. 300dpi) — turning a hairline
+         * that looks perfectly thin on screen into a ~3px line on paper/PDF.
+         * Painting each ruler at 1px and shrinking it post-layout with
+         * transform: scaleY sidesteps the floor, since the transform is
+         * applied after the 1px box has already been rasterized.
+         */
+        .rc hr,
+        .rc-contact::before,
+        .rc-contact::after,
+        .rc th::after,
+        .rc td::after {
+          transform: scaleY(0.3);
         }
 
         .rc {
