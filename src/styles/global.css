@@ -131,6 +131,18 @@ li::marker {
   color: var(--blue);
 }
 
+/* Blockquotes */
+blockquote {
+  margin: 1rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 3px solid var(--muted);
+  color: var(--muted);
+}
+
+blockquote p {
+  margin: 0.3rem 0;
+}
+
 /* Horizontal rule */
 hr {
   border: none;
@@ -264,4 +276,71 @@ tr:nth-child(even) td {
   font-size: 0.78em;
   margin: 0.2rem 0.2rem 0 0;
   white-space: nowrap;
+}
+
+/* ── Mobile (≤640px) ── */
+@media (max-width: 640px) {
+  html, body {
+    font-size: 0.875rem;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+  }
+
+  header nav {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+  }
+
+  h1, h2, h3 {
+    margin-top: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 0.4rem 0;
+  }
+
+  article p {
+    margin: 0.6rem 0;
+  }
+
+  hr {
+    margin: 1.25rem 0;
+  }
+
+  ul, ol {
+    margin: 0.4rem 0;
+    padding-left: 1.1rem;
+  }
+
+  pre {
+    font-size: 0.78rem;
+    padding: 0.65rem;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .resume-photo-wrap {
+    float: none;
+    margin: 0 auto 1.5rem;
+  }
 }
