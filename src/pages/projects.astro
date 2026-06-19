@@ -18,23 +18,15 @@ const groups = [
   {
     label: 'Open-source & independent R&D',
     projects: [
-      { emoji: '🎛️', name: 'Seqnaut & Sycosm', desc: 'Embedded audio DSP and synthesis platform for building synths, effects, and drum machines.', links: [{ label: 'Seqnaut & Sycosm', url: 'https://github.com/KKoovalsky/SeqNaut' }, { label: 'Synnaut', url: 'https://github.com/KKoovalsky/Synnaut' }] },
       { emoji: '🧩', name: 'Portable Bitfields', desc: 'Modern C++ bitfield abstraction library focused on correctness and compile-time guarantees.', url: 'https://github.com/KKoovalsky/PortableBitfields' },
-      { emoji: '🎸', name: 'Jeff', desc: 'Jungles Guitar Effect — a real-time DSP guitar pedal with an automated CMake test rig.', url: 'https://github.com/KKoovalsky/Jeff' },
-      { emoji: '🌦️', name: 'Aura Weather Station', desc: 'NB-IoT precision-agriculture weather monitoring system, built with friends.', url: 'https://github.com/KKoovalsky/AuraFW' },
-      { emoji: '⚙️', name: 'Tsepepe & TsepepeVim', desc: 'LLVM-based C++ refactoring tool, with a Vim plugin frontend.', links: [{ label: 'Tsepepe', url: 'https://github.com/KKoovalsky/Tsepepe' }, { label: 'TsepepeVim', url: 'https://github.com/KKoovalsky/TsepepeVim' }] },
       { emoji: '🏗️', name: 'LlvmCrossCompileArmCortexM', desc: 'Pre-built LLVM libraries cross-compiled for ARM Cortex-M baremetal targets.', url: 'https://github.com/KKoovalsky/LlvmCrossCompileArmCortexM' },
       { emoji: '🧵', name: 'JunglesOsHelpers', desc: 'RTOS helper abstractions for FreeRTOS and native targets, CMake-integrated.', url: 'https://github.com/KKoovalsky/JunglesOsHelpers' },
-      { emoji: '🎹', name: 'Zynthian', desc: 'Set up and explored a Raspberry Pi-based open synthesizer platform.' },
-    ],
-  },
-  {
-    label: 'External contributions',
-    projects: [
+      { emoji: '🎛️', name: 'Seqnaut & Sycosm', desc: 'Embedded audio DSP and synthesis platform for building synths, effects, and drum machines.', links: [{ label: 'Seqnaut & Sycosm', url: 'https://github.com/KKoovalsky/SeqNaut' }, { label: 'Synnaut', url: 'https://github.com/KKoovalsky/Synnaut' }] },
+      { emoji: '🎸', name: 'Jeff', desc: 'Jungles Guitar Effect — a real-time DSP guitar pedal with an automated CMake test rig.', url: 'https://github.com/KKoovalsky/Jeff' },
       { emoji: '🔩', name: 'stm32-cmake', desc: 'Added FreeRTOS and LL library support to a popular CMake build system for STM32.', prs: [{ label: '#67', url: 'https://github.com/ObKo/stm32-cmake/pull/67' }, { label: '#68', url: 'https://github.com/ObKo/stm32-cmake/pull/68' }] },
-      { emoji: '🖨️', name: 'eyalroz/printf', desc: 'Fixed CMake install path and header namespace collision in a widely-used embedded printf library.', prs: [{ label: '#65', url: 'https://github.com/eyalroz/printf/pull/65' }, { label: '#68', url: 'https://github.com/eyalroz/printf/pull/68' }] },
-      { emoji: '✏️', name: 'YouCompleteMe', desc: 'Documented LSP code actions (rename, extract, etc.) as a use-case for :YcmCompleter FixIt, with animated demos.', url: 'https://github.com/ycm-core/YouCompleteMe/pull/4094' },
-      { emoji: '🖥️', name: 'gnome-terminator', desc: 'Added an "inactive window background brightness" preference so unfocused terminals dim independently of text.', url: 'https://github.com/gnome-terminator/terminator/pull/709' },
+      { emoji: '⚙️', name: 'Tsepepe & TsepepeVim', desc: 'LLVM-based C++ refactoring tool, with a Vim plugin frontend.', links: [{ label: 'Tsepepe', url: 'https://github.com/KKoovalsky/Tsepepe' }, { label: 'TsepepeVim', url: 'https://github.com/KKoovalsky/TsepepeVim' }] },
+      { emoji: '🌦️', name: 'Aura Weather Station', desc: 'NB-IoT precision-agriculture weather monitoring system, built with friends.', url: 'https://github.com/KKoovalsky/AuraFW' },
+      { emoji: '🎹', name: 'Zynthian', desc: 'Set up and explored a Raspberry Pi-based open synthesizer platform.' },
     ],
   },
   {
@@ -76,7 +68,7 @@ const groups = [
                 {p.prs && (
                   <span class="pr-links">
                     ({p.prs.map((pr, i) => (
-                      <>{i > 0 && ', '}<a href={pr.url} target="_blank" rel="noopener"><strong>{pr.label}</strong></a></>
+                      <>{i > 0 && ', '}<a href={pr.url} target="_blank" rel="noopener">{pr.label}</a></>
                     ))})
                   </span>
                 )}
@@ -152,5 +144,6 @@ const groups = [
 
 .pr-links a {
   color: var(--blue);
+  font-weight: 600;
 }
 </style>
