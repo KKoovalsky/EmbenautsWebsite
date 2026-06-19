@@ -18,15 +18,23 @@ const groups = [
   {
     label: 'Open-source & independent R&D',
     projects: [
-      { emoji: '🎛️', name: 'Seqnaut & Sycosm', desc: 'Embedded audio DSP and synthesis platform for building synths, effects, and drum machines.' },
-      { emoji: '🧩', name: 'Portable Bitfields', desc: 'Modern C++ bitfield abstraction library focused on correctness and compile-time guarantees.' },
-      { emoji: '🎸', name: 'Jeff', desc: 'Jungles Guitar Effect — a real-time DSP guitar pedal with an automated CMake test rig.' },
-      { emoji: '🌦️', name: 'Aura Weather Station', desc: 'NB-IoT precision-agriculture weather monitoring system, built with friends.' },
-      { emoji: '🔧', name: 'LLVM / clangd', desc: 'Open-source contributions to clangd Code Actions for C and C++.' },
-      { emoji: '⚙️', name: 'Tsepepe & TsepepeVim', desc: 'LLVM-based C++ refactoring tool, with a Vim plugin frontend.' },
-      { emoji: '🏗️', name: 'LlvmCrossCompileArmCortexM', desc: 'Pre-built LLVM libraries cross-compiled for ARM Cortex-M baremetal targets.' },
-      { emoji: '🧵', name: 'JunglesOsHelpers', desc: 'RTOS helper abstractions for FreeRTOS and native targets, CMake-integrated.' },
+      { emoji: '🎛️', name: 'Seqnaut & Sycosm', desc: 'Embedded audio DSP and synthesis platform for building synths, effects, and drum machines.', links: [{ label: 'Seqnaut & Sycosm', url: 'https://github.com/KKoovalsky/SeqNaut' }, { label: 'Synnaut', url: 'https://github.com/KKoovalsky/Synnaut' }] },
+      { emoji: '🧩', name: 'Portable Bitfields', desc: 'Modern C++ bitfield abstraction library focused on correctness and compile-time guarantees.', url: 'https://github.com/KKoovalsky/PortableBitfields' },
+      { emoji: '🎸', name: 'Jeff', desc: 'Jungles Guitar Effect — a real-time DSP guitar pedal with an automated CMake test rig.', url: 'https://github.com/KKoovalsky/Jeff' },
+      { emoji: '🌦️', name: 'Aura Weather Station', desc: 'NB-IoT precision-agriculture weather monitoring system, built with friends.', url: 'https://github.com/KKoovalsky/AuraFW' },
+      { emoji: '⚙️', name: 'Tsepepe & TsepepeVim', desc: 'LLVM-based C++ refactoring tool, with a Vim plugin frontend.', links: [{ label: 'Tsepepe', url: 'https://github.com/KKoovalsky/Tsepepe' }, { label: 'TsepepeVim', url: 'https://github.com/KKoovalsky/TsepepeVim' }] },
+      { emoji: '🏗️', name: 'LlvmCrossCompileArmCortexM', desc: 'Pre-built LLVM libraries cross-compiled for ARM Cortex-M baremetal targets.', url: 'https://github.com/KKoovalsky/LlvmCrossCompileArmCortexM' },
+      { emoji: '🧵', name: 'JunglesOsHelpers', desc: 'RTOS helper abstractions for FreeRTOS and native targets, CMake-integrated.', url: 'https://github.com/KKoovalsky/JunglesOsHelpers' },
       { emoji: '🎹', name: 'Zynthian', desc: 'Set up and explored a Raspberry Pi-based open synthesizer platform.' },
+    ],
+  },
+  {
+    label: 'External contributions',
+    projects: [
+      { emoji: '🔩', name: 'stm32-cmake', desc: 'Added FreeRTOS and LL library support to a popular CMake build system for STM32.', prs: [{ label: '#67', url: 'https://github.com/ObKo/stm32-cmake/pull/67' }, { label: '#68', url: 'https://github.com/ObKo/stm32-cmake/pull/68' }] },
+      { emoji: '🖨️', name: 'eyalroz/printf', desc: 'Fixed CMake install path and header namespace collision in a widely-used embedded printf library.', prs: [{ label: '#65', url: 'https://github.com/eyalroz/printf/pull/65' }, { label: '#68', url: 'https://github.com/eyalroz/printf/pull/68' }] },
+      { emoji: '✏️', name: 'YouCompleteMe', desc: 'Documented LSP code actions (rename, extract, etc.) as a use-case for :YcmCompleter FixIt, with animated demos.', url: 'https://github.com/ycm-core/YouCompleteMe/pull/4094' },
+      { emoji: '🖥️', name: 'gnome-terminator', desc: 'Added an "inactive window background brightness" preference so unfocused terminals dim independently of text.', url: 'https://github.com/gnome-terminator/terminator/pull/709' },
     ],
   },
   {
@@ -54,7 +62,26 @@ const groups = [
           {group.projects.map(p => (
             <li class="project-item">
               <span class="project-emoji" aria-hidden="true">{p.emoji}</span>
-              <span><strong>{p.name}</strong> — {p.desc}</span>
+              <span>
+                <strong>
+                  {p.links
+                    ? p.links.map((l, i) => (
+                        <>{i > 0 && ' & '}<a href={l.url} target="_blank" rel="noopener">{l.label}</a></>
+                      ))
+                    : p.url
+                    ? <a href={p.url} target="_blank" rel="noopener">{p.name}</a>
+                    : p.name
+                  }
+                </strong>
+                {p.prs && (
+                  <span class="pr-links">
+                    ({p.prs.map((pr, i) => (
+                      <>{i > 0 && ', '}<a href={pr.url} target="_blank" rel="noopener"><strong>{pr.label}</strong></a></>
+                    ))})
+                  </span>
+                )}
+                {' — '}{p.desc}
+              </span>
             </li>
           ))}
         </ul>
@@ -115,5 +142,15 @@ const groups = [
 
 .all-link {
   margin-top: 2rem;
+}
+
+.pr-links {
+  color: var(--muted);
+  font-size: 0.9em;
+  margin-left: 0.3rem;
+}
+
+.pr-links a {
+  color: var(--blue);
 }
 </style>
