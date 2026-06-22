@@ -4,6 +4,151 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Contact | Embenauts">
   <h1>Contact</h1>
-  <p>Have a project in mind or want to discuss embedded software? Reach out directly:</p>
-  <p><a href="mailto:kacper@embenauts.dev">kacper@embenauts.dev</a></p>
+  <p>
+    Have a project in mind or want to discuss embedded software? Fill out the form below or email
+    <a href="mailto:kacper@embenauts.dev">kacper@embenauts.dev</a> directly.
+  </p>
+
+  <form id="contact-form" class="contact-form">
+    <input type="hidden" name="access_key" value="c9f076b8-a5f7-4ea3-95ca-82e9f13e1a5b" />
+    <input type="hidden" name="subject" value="New message from Embenauts website" />
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required autocomplete="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Send message</button>
+    <p id="form-status" class="form-status" aria-live="polite"></p>
+  </form>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status')!;
+  const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        status.textContent = "Message sent. I'll get back to you soon.";
+        status.classList.add('success');
+      } else {
+        status.textContent = data.message || 'Something went wrong. Please try again.';
+        status.classList.add('error');
+      }
+    } catch {
+      status.textContent = 'Network error. Please try again or email directly.';
+      status.classList.add('error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    max-width: 52ch;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  label {
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    border-color: var(--blue);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  .submit-btn {
+    align-self: flex-start;
+    background: var(--blue);
+    color: var(--bg);
+    border: 1px solid var(--blue);
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.55rem 1.25rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: #4a8ec2;
+    border-color: #4a8ec2;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-status {
+    font-size: 0.9rem;
+    margin: 0;
+    min-height: 1.2em;
+  }
+
+  .form-status.success {
+    color: #4ec9b0;
+  }
+
+  .form-status.error {
+    color: #f44747;
+  }
+</style>
