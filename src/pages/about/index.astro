@@ -9,21 +9,23 @@ const members = await getCollection('about');
   <h1>Team</h1>
   <ul class="about-list">
     {members.map(member => (
-      <li class="about-card">
-        {member.data.photo && (
-          <div class="about-photo-wrap">
-            <img
-              src={member.data.photo}
-              alt={member.data.name}
-              class="about-photo"
-              style={`--zoom: ${member.data.photoZoom ?? 1}; --offset-y: ${member.data.photoOffsetY ?? 0}%`}
-            />
+      <li>
+        <a href={`/about/${member.slug}/`} class="about-card">
+          {member.data.photo && (
+            <div class="about-photo-wrap">
+              <img
+                src={member.data.photo}
+                alt={member.data.name}
+                class="about-photo"
+                style={`--zoom: ${member.data.photoZoom ?? 1}; --offset-y: ${member.data.photoOffsetY ?? 0}%`}
+              />
+            </div>
+          )}
+          <div>
+            <strong>{member.data.name}</strong>
+            <p>{member.data.role}</p>
           </div>
-        )}
-        <div>
-          <a href={`/about/${member.slug}/`}><strong>{member.data.name}</strong></a>
-          <p>{member.data.role}</p>
-        </div>
+        </a>
       </li>
     ))}
   </ul>
@@ -43,6 +45,18 @@ const members = await getCollection('about');
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s;
+  }
+
+  .about-card:hover {
+    border-color: var(--blue);
+    text-decoration: none;
   }
 
   .about-photo-wrap {
