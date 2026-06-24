@@ -1,0 +1,334 @@
+---
+// LinkedIn banner — hidden draft, not linked from nav.
+// Visit /linkedin-header to preview.
+// Capture at 1584×396 px (see instructions on the page).
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LinkedIn Header — Embenauts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #111;
+        font-family: 'Inter', system-ui, sans-serif;
+        color: #d4d4d4;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 24px 60px;
+        gap: 28px;
+      }
+
+      /* ── Controls ─────────────────────────────────────────────── */
+
+      .controls {
+        width: 100%;
+        max-width: 960px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .controls h1 {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #9da5b4;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .controls-hint {
+        font-size: 12px;
+        color: #6b7280;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        border: 1px solid #3c3c3c;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        background: #252526;
+        color: #d4d4d4;
+      }
+
+      .btn:hover { background: #2d2d2e; border-color: #569cd6; color: #569cd6; }
+
+      /* ── Scaler (shrinks banner to fit viewport) ──────────────── */
+
+      .banner-scaler {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        overflow: visible;
+      }
+
+      .banner-origin {
+        transform-origin: top left;
+        /* transform set by JS */
+      }
+
+      /* ── The actual banner — 1584 × 396 px ───────────────────── */
+
+      .banner {
+        width: 1584px;
+        height: 396px;
+        position: relative;
+        background: #1a1c2a;
+        overflow: hidden;
+
+        /* Dark gradient: slightly lighter at the right edge */
+        background: linear-gradient(110deg, #141520 0%, #1a1c2a 55%, #1e2030 100%);
+
+        display: flex;
+        align-items: center;
+
+        padding-left: 64px;
+        padding-right: 64px;
+        justify-content: flex-end;
+      }
+
+      /* Subtle grid overlay */
+      .banner::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(86, 156, 214, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(86, 156, 214, 0.04) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+      }
+
+      /* Accent rule — blue left edge glow */
+      .banner::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, #569cd6, #3a6d99);
+      }
+
+      /* ── Content block ────────────────────────────────────────── */
+
+      .content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-end;
+        text-align: right;
+      }
+
+      .role-title {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 42px;
+        font-weight: 600;
+        color: #569cd6;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+      }
+
+      .skills {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 20px;
+        font-weight: 400;
+        color: #c8cdd6;
+        letter-spacing: 0.01em;
+      }
+
+      .skills .sep {
+        color: #4a5568;
+        margin: 0 6px;
+      }
+
+      .brand-block {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-top: 4px;
+      }
+
+      .brand-name {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffd700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .brand-tagline {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        color: #9da5b4;
+      }
+
+      .brand-url {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 16px;
+        font-weight: 500;
+        color: #7aadd4;
+        letter-spacing: 0.03em;
+      }
+
+      /* ── Dimensions label (outside banner, for reference) ─────── */
+
+      .dimensions {
+        font-size: 11px;
+        color: #4b5563;
+        text-align: center;
+        font-family: monospace;
+      }
+
+      /* ── Capture instructions ─────────────────────────────────── */
+
+      .instructions {
+        width: 100%;
+        max-width: 960px;
+        padding: 20px 24px;
+        background: #1c1c1e;
+        border: 1px solid #2d2d2f;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .instructions h2 {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9da5b4;
+      }
+
+      .instructions ol {
+        padding-left: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .instructions li {
+        font-size: 13px;
+        color: #7a8496;
+        line-height: 1.5;
+      }
+
+      .instructions code {
+        background: #2d2d2e;
+        color: #4ec9b0;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      <h1>LinkedIn Header</h1>
+      <span class="controls-hint">1584 × 396 px</span>
+      <button class="btn" id="zoom-fit">Fit to window</button>
+      <button class="btn" id="zoom-100">100%</button>
+    </div>
+
+    <div class="banner-scaler">
+      <div class="banner-origin" id="banner-origin">
+        <div class="banner" id="banner">
+          <div class="content">
+            <div class="role-title">Embedded Software Engineering</div>
+            <div class="skills">
+              CMake
+              <span class="sep">·</span>
+              Modern C++
+              <span class="sep">·</span>
+              Safety-Critical
+              <span class="sep">·</span>
+              RTOS
+              <span class="sep">·</span>
+              Embedded Linux
+              <span class="sep">·</span>
+              IoT
+            </div>
+            <div class="brand-block">
+              <span class="brand-name">Embenauts</span>
+              <span class="brand-tagline">Better embedded software systems.</span>
+              <span class="brand-url">embenauts.dev</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dimensions">1584 × 396 px — LinkedIn recommended banner size</div>
+
+    <div class="instructions">
+      <h2>How to capture</h2>
+      <ol>
+        <li>Click <strong>100%</strong> above to reset to actual size.</li>
+        <li>
+          Open DevTools → Elements panel, right-click the
+          <code>.banner</code> div → <em>Capture node screenshot</em>
+          (Chrome / Edge). This gives an exact 1584×396 PNG.
+        </li>
+        <li>
+          Alternative: use a browser extension like
+          <em>GoFullPage</em> or any screen capture tool cropped to the banner.
+        </li>
+        <li>Upload to LinkedIn: Profile → Edit → Background photo.</li>
+      </ol>
+    </div>
+
+    <script>
+      const origin = document.getElementById('banner-origin');
+      const banner = document.getElementById('banner');
+
+      function scaleFit() {
+        const available = window.innerWidth - 48;
+        const scale = Math.min(1, available / 1584);
+        origin.style.transform = `scale(${scale})`;
+        // compensate height so the wrapper doesn't collapse
+        origin.parentElement.style.height = `${396 * scale}px`;
+        origin.parentElement.style.alignItems = 'flex-start';
+      }
+
+      function scale100() {
+        origin.style.transform = 'scale(1)';
+        origin.parentElement.style.height = '396px';
+      }
+
+      document.getElementById('zoom-fit').addEventListener('click', scaleFit);
+      document.getElementById('zoom-100').addEventListener('click', scale100);
+
+      // start fitted
+      scaleFit();
+      window.addEventListener('resize', () => {
+        // only auto-rescale if we're in fit mode
+        if (parseFloat(getComputedStyle(origin).getPropertyValue('--manual')) !== 1) {
+          scaleFit();
+        }
+      });
+    </script>
+  </body>
+</html>
